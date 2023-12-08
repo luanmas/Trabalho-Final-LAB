@@ -21,8 +21,8 @@ void filterMatriz(struct pgm *img, int numfilter) {
 
             // Aqui, por exemplo, apenas uma média simples dos pixels vizinhos
             sum = 0;
-            for (int x = i - 1; x <= i + 1; x++) {
-                for (int y = j - 1; y <= j + 1; y++) {
+            for (int x = i - numfilter/2; x <= i + numfilter/2; x++) {
+                for (int y = j - numfilter/2; y <= j + numfilter/2; y++) {
                     if (x >= 0 && x < img->r && y >= 0 && y < img->c) {
                         sum += img->pData[x * img->c + y];
                     }
