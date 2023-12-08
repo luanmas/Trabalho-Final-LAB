@@ -1,21 +1,13 @@
-/*Aluno: Mikaelle Costa dos Santos
-Matricula: 20221045050311
-Aluno: Ana Flávia Torres do Carmo
-Matricula: 20221045050427
-Aluno: Isabelly Pinheiro da Costa
-Matricula: 20221045050460
-Aluno: Larissa do Nascimento Vieira
-Matricula: 20202045050412
-Avaliação 04: Trabalho Final
-04.505.23 - 2022.2 - Prof. Daniel Ferreira
-Compilador: gcc Versão: version 6.3.0 (MinGW.org GCC-6.3.0-1)
-*/
-
 #include "library.h"
 
 void generateMatrix(int *matrix, struct pgm *img1, struct pgm *img2, int level);
 
 
+// void filterMatriz(struct pgm *img) {
+
+// }
+
+// Criação do arquivo SCM
 void SCM(struct pgm *img1, struct pgm *img2, char *filename, int level){
   int *matrix=NULL;
   
@@ -49,6 +41,7 @@ void SCM(struct pgm *img1, struct pgm *img2, char *filename, int level){
   
 }
 
+// Calculo do SCM
 void generateMatrix(int *matrix, struct pgm *img1, struct pgm *img2, int level){
   int elem=0;
   
@@ -56,6 +49,9 @@ void generateMatrix(int *matrix, struct pgm *img1, struct pgm *img2, int level){
     elem = (int)(*(img1->pData+i)*level + *(img2->pData+i));
     *(matrix+elem)+=1;
   }
+  // img1 3
+  // img2 4
+  // level = 8
 
   puts("Matriz computada!\n");
 }
