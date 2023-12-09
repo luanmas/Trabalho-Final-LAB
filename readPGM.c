@@ -1,16 +1,3 @@
-/*Aluno: Mikaelle Costa dos Santos
-Matricula: 20221045050311
-Aluno: Ana Flávia Torres do Carmo
-Matricula: 20221045050427
-Aluno: Isabelly Pinheiro da Costa
-Matricula: 20221045050460
-Aluno: Larissa do Nascimento Vieira
-Matricula: 20202045050412
-Avaliação 04: Trabalho Final
-04.505.23 - 2022.2 - Prof. Daniel Ferreira
-Compilador: gcc Versão: version 6.3.0 (MinGW.org GCC-6.3.0-1)
-*/
-
 //Fazer a leitura da imagem e colocar os dados em uma estrutura
 
 #include "library.h"
@@ -49,7 +36,7 @@ void readPGMImage(struct pgm *pio, char *foldername, char *filename){
 		while( (ch=getc(fp))!='\n');
 	}
   
-	fseek(fp,-2, SEEK_CUR);
+	fseek(fp,-2, SEEK_CUR); // na posição das dimensões
 
   // Inserir na estrutura a dimensao da imagem
 	fscanf(fp, "%d %d",&pio->c,&pio->r);
