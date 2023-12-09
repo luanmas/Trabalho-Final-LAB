@@ -1,14 +1,19 @@
 #include <dirent.h>
 #include "library.h"
 
-// #define QTDIMG 1312
-// #define FOLDER "./oncotex_pgm"
 #define FOLDER "./oncotex_pgm"
  
-int main(){
-  
+int main(int argc, char *argv[]){
+  int numFilter;
 	clock_t begin, end;
 	double time_per_img, time_total=0;
+
+  if(argc != 2) {
+    puts("Use: ./<nomeDoArquivo> <filtro>\n");
+    exit(1);
+  }
+  numFilter = atoi(argv[1]);
+  printf("numFilter: %d\n" , numFilter);
   
   DIR *d;
   struct dirent *dir;
@@ -64,9 +69,12 @@ int main(){
       
       // Leitura da Imagem suavizada -PGM
       readPGMImage(&img2,FOLDER,dir->d_name);
-      // Filtrar a imagem 
+      
       // Quantização da Imagem suavizada -PGM
       quantize(&img2,level);
+
+      // Filtrar a imagem 
+      filterMatriz(&img2, numFilter);
       
       // Saida - Salvar matriz vetorizada no arquivo de características com o rotulo no final
       SCM(&img1, &img2, dir->d_name, level);
@@ -82,8 +90,7 @@ int main(){
     fclose(fp);
     closedir(d);
     
-    // Calcular tempo médio por imagem.
-    // printf("\nTempo médio: %lf\n",time_total/(QTDIMG/2));
+    // Mostrar tempo de execução
     printf("Tempo Total: %lf\n",time_total);
   }
 

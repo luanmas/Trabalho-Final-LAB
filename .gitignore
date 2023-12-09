@@ -1,3 +1,6 @@
 oncotex_mean_pgm_3x3/
 oncotex_mean_pgm_5x5/
 oncotex_mean_pgm_7x7/
+*.o
+*.txt
+*.exe

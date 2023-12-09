@@ -1,7 +1,7 @@
-all: prog.e
+all: prog.exe
 
-prog.e: main.o readPGM.o menu.o quantization.o computeMatrix.o
-	gcc -o prog.e main.o readPGM.o menu.o quantization.o computeMatrix.o
+prog.exe: main.o readPGM.o menu.o quantization.o computeMatrix.o
+	gcc -o prog.exe main.o readPGM.o menu.o quantization.o computeMatrix.o
 
 main.o: main.c
 	gcc -o main.o -c main.c
@@ -19,4 +19,4 @@ computeMatrix.o: computeMatrix.c
 	gcc -o computeMatrix.o -c computeMatrix.c
 
 clean:
-	rm -f *.o prog.e
+	rm -f *.o prog.exe
