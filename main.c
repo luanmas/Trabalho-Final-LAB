@@ -1,23 +1,19 @@
-/*Aluno: Luan Silva Mascarenhas
-Matricula: 00000000000
-Aluno: Isaac Nycolas
-Matricula: 00000000000
-Aluno: Breno Pinheiro
-Matricula: 00000000000
-Avaliação 04: Trabalho Final
-Compilador: gcc Versão: version 6.3.0 (MinGW.org GCC-6.3.0-1)
-*/
 #include <dirent.h>
 #include "library.h"
 
-// #define QTDIMG 1312
-// #define FOLDER "./oncotex_pgm"
 #define FOLDER "./oncotex_pgm"
  
-int main(){
-  
+int main(int argc, char *argv[]){
+  int numFilter;
 	clock_t begin, end;
 	double time_per_img, time_total=0;
+
+  if(argc != 2) {
+    puts("Use: ./<nomeDoArquivo> <filtro>\n");
+    exit(1);
+  }
+  numFilter = atoi(argv[1]);
+  printf("numFilter: %d\n" , numFilter);
   
   DIR *d;
   struct dirent *dir;
@@ -28,7 +24,7 @@ int main(){
   //Abre um arquivo pra ordem dos arquivos lidos
   if (!(fp = fopen("matrixOrder.txt","a+"))){
 		perror("Erro.");
-		exit(1);
+		exit(2);
 	}
 
   if (d){
@@ -40,7 +36,7 @@ int main(){
     
     while (((dir = readdir(d)) != NULL)){
 
-      // Ignorar arquivo "." e ".."
+      // Ignorar os diretórios "." e ".."
       if (!strcmp(dir->d_name, ".") || !strcmp(dir->d_name,"..")){
         continue;
       }
@@ -66,8 +62,8 @@ int main(){
         if(dir->d_name[i] == '.') {
           dir->d_name[i]='\0';
           fprintf(fp, "%s\n", dir->d_name);
-          }
         }
+      }
 
       strcat(dir->d_name,"_mean.pgm");
       
@@ -76,6 +72,9 @@ int main(){
       
       // Quantização da Imagem suavizada -PGM
       quantize(&img2,level);
+
+      // Filtrar a imagem 
+      filterMatriz(&img2, numFilter);
       
       // Saida - Salvar matriz vetorizada no arquivo de características com o rotulo no final
       SCM(&img1, &img2, dir->d_name, level);
@@ -91,8 +90,7 @@ int main(){
     fclose(fp);
     closedir(d);
     
-    // Calcular tempo médio por imagem.
-    // printf("\nTempo médio: %lf\n",time_total/(QTDIMG/2));
+    // Mostrar tempo de execução
     printf("Tempo Total: %lf\n",time_total);
   }
 
