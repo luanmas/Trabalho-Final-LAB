@@ -6,8 +6,8 @@
 
 void readPGMImage(struct pgm *pio, char *foldername, char *filename){
 
-	FILE *fp;
-	char ch;
+  FILE *fp;
+  char ch;
   char fileAddress[TAM];
 
   // Definir o caminho do arquivo

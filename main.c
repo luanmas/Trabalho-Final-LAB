@@ -58,6 +58,7 @@ int main(int argc, char *argv[]){
       
       // dir = readdir(d); // Próximo arquivo
 
+
       for(int i=0;i<strlen(dir->d_name);i++){
         if(dir->d_name[i] == '.') {
           dir->d_name[i]='\0';

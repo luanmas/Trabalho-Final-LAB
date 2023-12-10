@@ -4,7 +4,7 @@
 
 void quantize(struct pgm *img, int level){
   
-  int quant = (img->mv+1) / level; // 32 ou 16
+  int quant = (img->mv+1) / level; // 8 ou 16
   int start, end, count=0; // começa em 0 e termina em level-1
   int inter = quant;
   
